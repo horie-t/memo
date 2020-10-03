@@ -11,10 +11,10 @@ Amazon EC2 F1 インスタンスは、FPGA を使用できるインスタンス�
 作業の流れは、以下の通りです。
 
 1. FPGAイメージの開発用のEC2インスタンス(以降、開発用インスタンスと呼びます)をセットアップ
-2. 開発用インスタンスでFPGAイメージをビルドしてS3にアップロード
+2. 開発用インスタンスでFPGAイメージの元データをビルドし、S3にアップロードしてFPGAイメージを作成
 3. Amazon EC2 F1 インスタンス(以降、実行用F1インスタンスと呼びます)をセットアップ
 4. 実行用F1インスタンスでS3にアップロードされたFPGAイメージをロード
-5. FPGAの機能を呼び出すプログラムを実行
+5. 実行用F1インスタンスでFPGAの機能を呼び出すプログラムを実行
 
 実行用F1インスタンスで開発用インスタンスを兼用する事もできますが、実行用F1インスタンスの料金は高いので、FPGAイメージのビルド作業は料金の安い普通のEC2インスタンス(それでも32GiB以上のメモリが必須)で行います。
 
@@ -155,3 +155,102 @@ aws ec2 describe-fpga-images --fpga-image-ids AFIのID
 ```
 
 戻り値の `State` の `Code` が `available` になれば作成完了です。 `failed` の場合は作成失敗です。
+
+### 実行用F1インスタンスのセットアップ
+
+#### インスタンスの作成
+
+開発用インスタンスの作成と同様の手順で作成します。ただし「インスタンスタイプの選択」では「f1.2xlarge」を選択します。
+
+#### インスタンスへのログインと環境設定
+
+開発用インスタンスの時の同様にログインし、パッケージの更新し、AWS CLIを実行できるようにします。
+
+#### FPGA Management toolsのインストールと環境設定
+
+FPGA Management toolsをインストールしてセットアップします。
+
+```
+git clone https://github.com/aws/aws-fpga.git $AWS_FPGA_REPO_DIR
+cd $AWS_FPGA_REPO_DIR
+source sdk_setup.sh
+```
+
+#### AFIのロード
+
+まず、FPGAのイメージを削除します。
+
+```
+sudo fpga-clear-local-image -S 0
+```
+
+以下のコマンドで、イメージの状態等を確認できます。
+
+```
+sudo fpga-describe-local-image -S 0 -H
+```
+
+イメージをロードします。AFIのグローバルIDは `create-fpga-image` の戻り値の `FpgaImageGlobalId` の値を指定します。(AFIのIDではない事に注意)
+
+```
+sudo fpga-load-local-image -S 0 -I AFIのグローバルID
+```
+
+ロードが適切に行われたかを検証します。
+
+```
+sudo fpga-describe-local-image -S 0 -R -H
+```
+
+### FPGAの機能の呼び出し
+
+テスト用のプログラムがあるので、ビルドして実行します。
+
+まず、cl_hello_world のサンプルディレクトリに移動します。
+
+```
+cd $HDK_DIR/cl/examples/cl_hello_world
+export CL_DIR=$(pwd)
+cd $CL_DIR/software/runtime/
+make all
+sudo ./test_hello_world
+```
+
+テスト用プログラムをビルドします。
+
+```
+make all
+```
+
+プログラムを実行します。
+
+```
+sudo ./test_hello_world
+```
+
+実行すると以下のように表示されます。
+
+```
+$ sudo ./test_hello_world
+AFI PCI  Vendor ID: 0x1d0f, Device ID 0xf000
+===== Starting with peek_poke_example =====
+Writing 0xefbeadde to HELLO_WORLD register (0x0000000000000500)
+=====  Entering peek_poke_example =====
+register: 0xdeadbeef
+TEST PASSEDResulting value matched expected value 0xdeadbeef. It worked!
+Developers are encouraged to modify the Virtual DIP Switch by calling the linux shell command to demonstrate how AWS FPGA Virtual DIP switches can be used to change a CustomLogic functionality:
+$ fpga-set-virtual-dip-switch -S (slot-id) -D (16 digit setting)
+
+In this example, setting a virtual DIP switch to zero clears the corresponding LED, even if the peek-poke example would set it to 1.
+For instance:
+# sudo fpga-set-virtual-dip-switch -S 0 -D 1111111111111111
+# sudo fpga-get-virtual-led  -S 0
+FPGA slot id 0 have the following Virtual LED:
+1010-1101-1101-1110
+# sudo fpga-set-virtual-dip-switch -S 0 -D 0000000000000000
+# sudo fpga-get-virtual-led  -S 0
+FPGA slot id 0 have the following Virtual LED:
+0000-0000-0000-0000
+```
+
+仮想的なLEDのON/OFFとかもできるのだけど、手元で実機を動かした時のような感動はないのが残念…

@@ -55,7 +55,7 @@ AWSのコンソール画面で以下を実施します。
 16. 「ロール名」を設定して、「ロールの作成」
 17. 「IAMロールを変更」のタブに戻ってロールを選択して保存
 
-#### インスタンスへのログイン
+#### インスタンスへのログインと環境設定
 
 SSHで、先程作成したキーペアを使って、ユーザ名:`centos`、ホスト:`インスタンスのパブリックIP v4アドレス`を指定してログインします。
 
@@ -71,10 +71,87 @@ ssh -i ~/.ssh/キーペアファイル名 centos@IPアドレス
 sudo yum update -y
 ```
 
-#### S3バケットの作成
+AWS CLIコマンドを実行できるようにします。
 
-AFIイメージを保存するS3バケットを作成します。
+```bash
+aws configure
+```
+
+
+#### HDKのインストールと環境設定
+
+AWS FPGA HDKをインストールしてセットアップします。(最後の `source hdk_setup.sh` はログインする毎に実行する必要があります。)
 
 ```
+# FPGA Developer AMIには、デフォルトでAWS_FPGA_REPO_DIR=/home/centos/src/project_data/aws-fpgaの設定がされています。
+git clone https://github.com/aws/aws-fpga.git $AWS_FPGA_REPO_DIR
+cd $AWS_FPGA_REPO_DIR
+source hdk_setup.sh
+```
+
+### Amazon FPGAイメージ(AFI)を作成
+
+まず、cl_hello_world のサンプルディレクトリに移動して環境変数を設定します。
+
+```
+cd $HDK_DIR/cl/examples/cl_hello_world
+export CL_DIR=$(pwd)
+```
+
+次に、独自回路をビルドします。ビルドの実行自体はバックグラウンドで行われるので、すぐにプロンプトが戻ります。
+
+```
+cd $CL_DIR/build/scripts
+./aws_build_dcp_from_cl.sh
+```
+
+上記のスクリプト実行時に以下の例のような内容が表示されます。
+
+```
+INFO: Output is being redirected to 20_10_03-020546.nohup.out
+```
+
+以下の例のコマンドを実行して、ビルドの進行状況を確認できます。( `Ctrl + C` キーで確認を終了できます。)
+(メールでビルド完了を通知させる方法もありますが、今回は省略します)
+
+```
+tail -f 20_10_03-020546.nohup.out
+```
+
+ビルドが完了したら、ビルドの成果物であるデザイン・チェックポイント(DCP)のtarファイルをS3にアップロードします。
+
+```
+# アップロード先のS3バケットを作成する
 aws s3 mb s3://バケット名 --region us-west-2
+# DCPのtarファイルをS3にアップロードする。
+aws s3 cp $CL_DIR/build/checkpoints/to_aws/*.Developer_CL.tar \
+       s3://バケット名/DCPフォルダ名/
 ```
+
+AFI作成時のログの出力先ディレクトリを作成します。
+
+```
+# 一時ファイルを作成
+touch LOGS_FILES_GO_HERE.txt
+# 一時ファイルをアップロードして、フォルダを生成する
+aws s3 cp LOGS_FILES_GO_HERE.txt s3://バケット名/ログ・フォルダ名/
+```
+
+AFIを作成します。
+
+```
+aws ec2 create-fpga-image \
+        --region リージョン名 \
+        --name AFIイメージ名 \
+        --description "AFIイメージの説明" \
+        --input-storage-location Bucket=バケット名,Key=DCPのtarファイルのパス \
+        --logs-storage-location Bucket=バケット名,Key=ログ・フォルダのパス
+```
+
+AFIの作成の進行状況は以下のコマンドで確認できます。AFIのIDは `create-fpga-image` の戻り値の `FpgaImageId` の値を指定します。
+
+```
+aws ec2 describe-fpga-images --fpga-image-ids AFIのID
+```
+
+戻り値の `State` の `Code` が `available` になれば作成完了です。 `failed` の場合は作成失敗です。

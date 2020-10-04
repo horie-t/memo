@@ -2,7 +2,7 @@
 
 Amazon EC2 F1 インスタンスは、FPGA を使用できるインスタンスです。
 
-このページでは、まず、AWS FPGA Hardware Development Kit (HDK)のサンプルの cl_hello_world を実行してみて、その後、Chiselで書いたコードを動かしてみます。
+このページでは、まず、[AWS FPGA Hardware Development Kit (HDK)](https://github.com/aws/aws-fpga)のサンプルの cl_hello_world を実行してみて、その後、Chiselで書いたコードを動かしてみます。
 
 ## cl_hello_worldを実行する
 
@@ -98,24 +98,11 @@ cd $HDK_DIR/cl/examples/cl_hello_world
 export CL_DIR=$(pwd)
 ```
 
-次に、独自回路をビルドします。ビルドの実行自体はバックグラウンドで行われるので、すぐにプロンプトが戻ります。
+次に、独自回路をビルドします。(バックグラウンドでビルドしたい場合は、「-foreground」を省略します。nohupコマンドを使うので、ログアウトしてもビルドは継続されます。)
 
 ```
 cd $CL_DIR/build/scripts
-./aws_build_dcp_from_cl.sh
-```
-
-上記のスクリプト実行時に以下の例のような内容が表示されます。
-
-```
-INFO: Output is being redirected to 20_10_03-020546.nohup.out
-```
-
-以下の例のコマンドを実行して、ビルドの進行状況を確認できます。( `Ctrl + C` キーで確認を終了できます。)
-(メールでビルド完了を通知させる方法もありますが、今回は省略します)
-
-```
-tail -f 20_10_03-020546.nohup.out
+./aws_build_dcp_from_cl.sh -foreground
 ```
 
 ビルドが完了したら、ビルドの成果物であるデザイン・チェックポイント(DCP)のtarファイルをS3にアップロードします。
@@ -212,8 +199,6 @@ sudo fpga-describe-local-image -S 0 -R -H
 cd $HDK_DIR/cl/examples/cl_hello_world
 export CL_DIR=$(pwd)
 cd $CL_DIR/software/runtime/
-make all
-sudo ./test_hello_world
 ```
 
 テスト用プログラムをビルドします。

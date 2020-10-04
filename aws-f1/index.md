@@ -459,3 +459,5 @@ file copy -force $CL_DIR/../common/design/cl_common_defines.vh        $TARGET_DI
                                           vled_q);
 
 ```
+
+上記の結果は[こちら](https://github.com/horie-t/aws-fpga/tree/master/hdk/cl/examples/cl_hello_world_chisel)にあります。ただし、全く同じではつまらないので、swapをバイト単位ではなく、word(16bit)単位で行うようにしています。そのため、swapの結果がdeadbeafになりません。

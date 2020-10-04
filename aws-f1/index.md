@@ -199,8 +199,6 @@ sudo fpga-describe-local-image -S 0 -R -H
 cd $HDK_DIR/cl/examples/cl_hello_world
 export CL_DIR=$(pwd)
 cd $CL_DIR/software/runtime/
-make all
-sudo ./test_hello_world
 ```
 
 テスト用プログラムをビルドします。

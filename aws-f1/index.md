@@ -375,9 +375,87 @@ endmodule // cl_hello_world_core
 // 後略
 ```
 
-`build/scripts/encrypt.tcl`のファイルも修正する。真ん中の行が追加される。
+`build/scripts/encrypt.tcl`のファイルも修正する。真ん中の行を追加しています。
+
 ```tcl
 file copy -force $CL_DIR/design/cl_hello_world.sv                     $TARGET_DIR 
 file copy -force $CL_DIR/design/cl_hello_world_core.sv                $TARGET_DIR 
 file copy -force $CL_DIR/../common/design/cl_common_defines.vh        $TARGET_DIR 
+```
+
+### Chiselコードの作成
+
+前述の`cl_hello_world_core`と同等のモジュールをChiselで書くと以下のようになります。
+
+```scala
+import chisel3._
+import chisel3.util._
+
+class ClHelloWorldCore extends Module {
+  val io = IO(new Bundle {
+    val wrAddr = Input(UInt(32.W))
+    val wData = Input(UInt(32.W))
+    val wrReady = Input(Bool())
+    val shClStatusVDip = Input(UInt(16.W))
+    val helloWorldQByteSwapped = Output(UInt(32.W))
+    val clShStatusVLed = Output(UInt(16.W))
+    val vLed = Output(UInt(16.W))
+  })
+
+  val HELLO_WORLD_REG_ADDR = "h0000_0500".U(32.W)
+
+  //-------------------------------------------------
+  // Hello World Register
+  //-------------------------------------------------
+  // When read it, returns the byte-flipped value.
+  val helloWorldQ = RegInit(0.U(32.W))
+  when(io.wrReady === true.B && io.wrAddr === HELLO_WORLD_REG_ADDR) {
+    helloWorldQ := io.wData
+  }
+  io.helloWorldQByteSwapped := Cat(helloWorldQ(7, 0), helloWorldQ(15, 8),
+    helloWorldQ(23, 16), helloWorldQ(31, 24))
+
+  //-------------------------------------------------
+  // Virtual LED Register
+  //-------------------------------------------------
+  // Flop/synchronize interface signals
+  val shClStatusVDipQ = RegNext(io.shClStatusVDip , 0.U(16.W))
+  val shClStatusVDipQ2 = RegNext(shClStatusVDipQ, 0.U(16.W))
+
+  val vLedQ = RegNext(helloWorldQ(15, 0), 0.U(16.W))
+  val preClShStatusVLed = vLedQ & shClStatusVDipQ2
+  val clShStatusVLed = RegNext(preClShStatusVLed, 0.U(16.W))
+
+  io.vLed := vLedQ
+  io.clShStatusVLed := clShStatusVLed
+}
+
+object ClHelloWorldCore extends App {
+  chisel3.Driver.execute(args, () => new ClHelloWorldCore)
+}
+```
+
+上記から生成される`ClHelloWorldCore.v`を`ClHelloWorldCore.sv`としてコピーします。
+
+`build/scripts/encrypt.tcl`のファイルも以下のように修正します。
+
+```tcl
+file copy -force $CL_DIR/design/cl_hello_world.sv                     $TARGET_DIR
+file copy -force $CL_DIR/design/ClHelloWorldCore.sv                   $TARGET_DIR
+file copy -force $CL_DIR/../common/design/cl_common_defines.vh        $TARGET_DIR
+```
+
+`cl_hello_world.sv`は、Chilseのリセットは正論理なので、以下のようにリセットを反転させます。
+
+```
+   cl_hello_world_core CL_HELLO_WORLD_CORE(clk_main_a0,
+                                          !rst_main_n_sync,
+                                          wr_addr,
+                                          wdata,
+                                          wready,
+                                          sh_cl_status_vdip,
+                                          hello_world_q_byte_swapped,
+                                          cl_sh_status_vled,
+                                          vled_q);
+
 ```

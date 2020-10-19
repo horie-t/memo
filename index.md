@@ -1,5 +1,5 @@
 # メモ
 
-## AWS F1インスタンス
+## AWS EC2 F1インスタンス
 
-[AWS F1インスタンスを使ってみる](./aws-f1/index.html)
+[AWS EC2 F1インスタンスを使ってみる](./aws-f1/index.html)

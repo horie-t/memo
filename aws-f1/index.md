@@ -452,16 +452,21 @@ file copy -force $CL_DIR/../common/design/cl_common_defines.vh        $TARGET_DI
 `cl_hello_world.sv`は、Chilseのリセットは正論理なので、以下のようにリセットを反転させます。
 
 ```
-   cl_hello_world_core CL_HELLO_WORLD_CORE(clk_main_a0,
-                                          !rst_main_n_sync,
-                                          wr_addr,
-                                          wdata,
-                                          wready,
-                                          sh_cl_status_vdip,
-                                          hello_world_q_byte_swapped,
-                                          cl_sh_status_vled,
-                                          vled_q);
+   ClHelloWorldCore CL_HELLO_WORLD_CORE(clk_main_a0,
+                                        !rst_main_n_sync,
+                                        wr_addr,
+                                        wdata,
+                                        wready,
+                                        sh_cl_status_vdip,
+                                        hello_world_q_byte_swapped,
+                                        cl_sh_status_vled,
+                                        vled_q);
 
 ```
 
-上記の結果は[こちら](https://github.com/horie-t/aws-fpga/tree/chisel-first/hdk/cl/examples/cl_hello_world_chisel)にあります。ただし、全く同じではつまらないので、swapをバイト単位ではなく、word(16bit)単位で行うようにしています。そのため、swapの結果がdeadbeafになりません。
+上記の結果は[こちら](https://github.com/horie-t/aws-fpga/tree/chisel-first/hdk/cl/examples/cl_hello_world_chisel)にあります。ただし、全く同じではつまらないので、swapをバイト単位ではなく、16bit単位で行うようにしています。そのため、swapの結果がdeadbeafになりません。
+
+参考：このまま、SystemVerilogのコードを全てChiselのコードに変更したくなりますが、必要なポートに以下のような要素数1の配列のポートがあり、このようなVerilogの型をChiselは出力できず、DCP作成途中でエラーになってしまいます。ですので、部分的にChiselを使う程度でやめておくべきでしょう。
+```
+   output [0:0]         M_A_CKE,
+```

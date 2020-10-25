@@ -13,7 +13,7 @@ AWS EC2 F1インスタンスのFPGA部分は、大きく以下の2つの部分�
 
 アプリケーション・ソフトウェアとSHとCLの関係は以下のようになります。
 
-![FPGA利用時のソフトウェア構成](./amazon/AWS_FPGA_Software_Overview.jpg)
+![FPGA利用時のソフトウェア構成](../amazon/AWS_FPGA_Software_Overview.jpg)
 
 上図のようにソフトウェアは、SHを経由してCLの機能を利用します。SHには以下の2つのPF(Physical Function)があり、このPFをソフトウェアが利用します：
 
@@ -25,7 +25,7 @@ AppPFを利用するには、CのOpenCLのライブラリや、DやEやFのラ�
 
 次に、SHとCLは以下のように接続されています。
 
-![SHとCL](./amazon/AWS_Shell_CL_overview.jpg)
+![SHとCL](../amazon/AWS_Shell_CL_overview.jpg)
 
 F1インスタンスとFPGAのSHは[PCIeインタフェース(I/F)](https://ja.wikipedia.org/wiki/PCI_Express)で接続されています。SHとCL間は、主に[AXI-4 I/F](https://ja.wikipedia.org/wiki/Advanced_eXtensible_Interface)で接続されています(つまりSHはPCIeとAXIの変換を行っています)。
 

@@ -28,7 +28,7 @@ Amazon EC2 F1 インスタンスは、FPGA を使用できるインスタンス�
 | --- | --- | --- | --- | --- | --- |
 | 開発用 | m4.2xlarge | 0.40USD/時間 | 8 | 32GiB | 90分 |
 | 開発用 | z1d.xlarge | 0.372USD/時間 | 4 | 32GiB | 71分 |
-| 開発用 | z1d.2xlarge | 0.744USD/時間 | 8 | 64GiB | - |
+| 開発用 | z1d.2xlarge | 0.744USD/時間 | 8 | 64GiB | 60分 |
 | 開発用 | c5.4xlarge | 0.68USD/時間 | 16 | 32GiB | 66分 |
 | 開発用 | c5.9xlarge | 1.53USD/時間 | 32 | 72GiB | - |
 | 実行用 | f1.2xlarge | 1.65USD/時間 | 8 | 122GiB | - |

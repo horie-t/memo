@@ -4,7 +4,7 @@
 
 AWS EC2 F1インスタンス(以降、F1インスタンスと省略)とは、EC2インスタンスに[Xilinx UltraScale+ VU9P](https://japan.xilinx.com/products/silicon-devices/fpga/virtex-ultrascale-plus-vu19p.html)ベースのFPGAを搭載したインスタンスです。
 
-FPGA(field-programmable gate array)とは、ユーザが使う現場でプログラム可能な集積回路です。CPUは、工場からの出荷段階で回路を変更できませんが、FPGAは装置の起動時や起動後の実行中に回路の構成を変更できます。FPGAを使ってアプリケーション固有の回路を特別にプログラミングすると、そのアプリケーションの用途に限ってはCPUよりも低遅延かつ大量にデータを処理する事ができます。
+FPGA(field-programmable gate array)とは、ユーザが使う現場でプログラム可能な集積回路です。CPUは、工場からの出荷段階で回路を変更できませんが、FPGAは装置の起動時や起動後の実行中に回路の構成を変更できます。FPGAを使ってアプリケーション独自の回路(Custom Logic: CL)を特別にプログラミングすると、そのアプリケーションの用途に限ってはCPUよりも低遅延かつ大量にデータを処理する事ができます。
 
 ムーアの法則の終焉が語られ、CPUのコア単体での処理性能が頭打ちになってきている現在、FPGAを利用して処理性能を向上させる事に注目が集まってきています。
 
@@ -31,3 +31,13 @@ FPGA(field-programmable gate array)とは、ユーザが使う現場でプログ
 | 実行用 | f1.2xlarge | 1.65USD/時間 |
 
 具体的な作業については、[Hello Worldを実行した例](./index.html)を参照してください。
+
+## 開発環境と開発用の言語
+
+開発に使えるツールと、独自回路(Custom Logic)の開発に使える言語は以下の通りです。
+
+| ツール | 言語 |
+| --- | --- |
+| Vitis/SDAccel | C/C++/OpenCL, Verilog/VHDL |
+| Vivado | Verilog/VHDL |
+| Vivado HLx | Verilog/VHDL/C |

@@ -27,4 +27,14 @@ AppPFを利用するには、CのOpenCLのライブラリや、DやEやFのラ�
 
 ![SHとCL](https://github.com/aws/aws-fpga/blob/master/hdk/docs/images/AWS_Shell_CL_overview.jpg)
 
-F1インスタンスとFPGA部分はPCIeインタフェース(I/F)で接続されています。PCIeはSHと接続されています。SHとCL間は、ARM社が開発したAXI-4 I/Fで接続されています(つまりSHはPCIeとAXIの変換を行っています)。
+F1インスタンスとFPGAのSHは[PCIeインタフェース(I/F)](https://ja.wikipedia.org/wiki/PCI_Express)で接続されています。SHとCL間は、主に[AXI-4 I/F](https://ja.wikipedia.org/wiki/Advanced_eXtensible_Interface)で接続されています(つまりSHはPCIeとAXIの変換を行っています)。
+
+左から順に接続を説明していきます。
+
+* DMA_PCIS (AXI-4): F1インスタンスからの、DMA(Direct Memory Access)によるPCIe経由のSlaveのI/Fです。F1インスタンスからの高速なデータの読み書きを実現します。(AppPFのBAR4)
+* PCIM (AXI-4): CLからF1インスタンスのメモリの読み書きに使われます。
+* BAR1 (AXI-L): CLを使うアプリケーションのレジスタ(Base Address Register)用として使用します。(AppPFのBAR1)
+* OCL (AXI-L): CLを使うアプリケーションのレジスタやOpenCLカーネル用に使われます。(AppPFのBAR0)
+* Misc(int, status, vLED/vDIP): その他の信号です。
+* SDA (AXL-L): AWS OpenCL runtimeライブラリによってパフォーマンス・モニタ用等に使用されたりします。
+* DDR (AXI-4): CLからSH内のDDR4 SDRAMにアクセス用に使われます。

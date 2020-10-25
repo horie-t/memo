@@ -41,3 +41,5 @@ FPGA(field-programmable gate array)とは、ユーザが使う現場でプログ
 | Vitis/SDAccel | C/C++/OpenCL, Verilog/VHDL |
 | Vivado | Verilog/VHDL |
 | Vivado HLx | Verilog/VHDL/C |
+
+Vivadoを使った開発については、[AWS FPGA Hardware Development Kit (HDK)](./hdk.html)を参照してください。

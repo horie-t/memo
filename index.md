@@ -10,3 +10,4 @@
 ## マイクロDNN
 
 * [Binarized Neural Networks](./mdnn/bnn.html)
+* [A Review of Binarized Neural Networks](./mdnn/review-bnns.html)

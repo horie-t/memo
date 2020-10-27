@@ -9,4 +9,4 @@
 
 ## マイクロDNN
 
-* [Binarized Neural Networks](./mdnn/bnn.md)
+* [Binarized Neural Networks](./mdnn/bnn.html)

@@ -94,6 +94,33 @@ FPGAに載っている4つのDDR4 SDRAMに16MBのランダムなデータを書�
 
 ### interrupt_example
 
+FPGAのレジスタに、fpga_pci_pokeで割込み番号を指定して書き込むと、FPGA側からPCIe MSI-X(Message-Signaled Interrupt - X)割込みがインスタンス側に発生するようになっている。
 
+一連の流れは概略は以下の通り。変数の宣言やエラー処理は省略
+
+```c
+    // pollシステムコールで受け取るファイル・ディスクリプタ
+    struct pollfd fds[1];
+    // PCIスロットを指定してデバイス番号を取得
+    fpga_pci_get_dma_device_num(FPGA_DMA_XDMA, slot_id, &device_num)
+    // 割込みを受けるデバイスファイル名を生成
+    sprintf(event_file_name, "/dev/xdma%i_events_%i", device_num, interrupt_number);
+    // FPGAに接続
+    fpga_pci_attach(slot_id, pf_id, bar_id, fpga_attach_flags, &pci_bar_handle);
+    // デバイスファイルを開いて、pollのファイル・ディスクリプタを設定
+    fd = open(event_file_name, O_RDONLY))
+    fds[0].fd = fd;
+    fds[0].events = POLLIN;
+    // FPGAのレジスタに値を書き込む
+    fpga_pci_poke(pci_bar_handle, interrupt_reg_offset , 1 << interrupt_number);
+    // 割込みイベントを待つ
+    rd = poll(fds, num_fds, poll_timeout);
+    if((rd > 0) && (fds[0].revents & POLLIN)) {
+        // イベントを読み込み
+        rc = pread(fd, &events_user, sizeof(events_user), 0);
+	// FPGA側に割込みのクリアを指示
+	fpga_pci_poke(pci_bar_handle, interrupt_reg_offset , 0x1 << (16 + interrupt_number) );
+    }
+```
 
 ### axi_mstr_example

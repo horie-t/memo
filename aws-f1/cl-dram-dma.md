@@ -127,7 +127,14 @@ FPGAのレジスタに、fpga_pci_pokeで割込み番号を指定して書き込
 
 ## FPGA側の構成
 
+`cl_dram_dma.sv`ファイルの`cl_dram_dma`がTopモジュール。この中にDRAMアクセスや割込みの実例のモジュールがインスタンス化されている。
+
 ### DRAMアクセス
 
 ### 割込み
+
+`cl_int_slv.sv`ファイルの`cl_int_slv`と、`cl_int_tst.sv`ファイルの`cl_int_tst`が、F1インスタンス側に割込みを要求するモジュール。
+`cl_ocl_slv.sv`ファイルの`cl_ocl_slv`モジュールが、F1インスタンスからの`0xd00`番地のレジスタ書き込みを受け付けて、cl_int_slvに割込みの発生を要求する。
+
+
 

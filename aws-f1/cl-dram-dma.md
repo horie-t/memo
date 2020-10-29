@@ -124,3 +124,10 @@ FPGAのレジスタに、fpga_pci_pokeで割込み番号を指定して書き込
 ```
 
 ### axi_mstr_example
+
+## FPGA側の構成
+
+### DRAMアクセス
+
+### 割込み
+

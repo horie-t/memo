@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.0.1 (0767f8302a, 2020-10-17)"
+   sodipodi:docname="cl-dram-dma_interrupt.svg">
+  <defs
+     id="defs2">
+    <marker
+       style="overflow:visible;"
+       id="marker1225"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8) rotate(180) translate(12.5,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path1223" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker1189"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.8) rotate(180) translate(12.5,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path1187" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="Arrow1Lend"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.8) rotate(180) translate(12.5,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path866" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lstart"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lstart"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8) translate(12.5,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path863" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.01"
+     inkscape:cx="229.77432"
+     inkscape:cy="269.10374"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     inkscape:snap-text-baseline="false"
+     inkscape:snap-global="true"
+     inkscape:snap-others="true"
+     inkscape:window-width="1643"
+     inkscape:window-height="759"
+     inkscape:window-x="185"
+     inkscape:window-y="88"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="レイヤー 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.291515;stroke-opacity:1"
+       id="rect833"
+       width="129.46259"
+       height="56.048935"
+       x="3.2140617"
+       y="28.653021" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="81.189926"
+       y="25.644638"
+       id="text837"><tspan
+         sodipodi:role="line"
+         id="tspan835"
+         x="81.189926"
+         y="25.644638"
+         style="stroke-width:0.264583" /></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:4.23333px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="96.187447"
+       y="80.084808"
+       id="text841"><tspan
+         sodipodi:role="line"
+         id="tspan839"
+         x="96.187447"
+         y="80.084808"
+         style="font-size:4.23333px;stroke-width:0.264583">CL_DRAM_DMA</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:4.23333px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="86.029251"
+       y="6.3854766"
+       id="text845"><tspan
+         sodipodi:role="line"
+         id="tspan843"
+         x="86.029251"
+         y="6.3854766"
+         style="font-size:4.23333px;stroke-width:0.264583">sh_cl_ocl</tspan><tspan
+         sodipodi:role="line"
+         x="86.029251"
+         y="12.185635"
+         style="font-size:4.23333px;stroke-width:0.264583"
+         id="tspan847">(OCL: AppPF BAR0)</tspan></text>
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.254729;stroke-opacity:1"
+       id="rect849"
+       width="35.52359"
+       height="20.318455"
+       x="87.161751"
+       y="33.778854" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:4.23333px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="93.503212"
+       y="50.072079"
+       id="text853"><tspan
+         sodipodi:role="line"
+         id="tspan851"
+         x="93.503212"
+         y="50.072079"
+         style="font-size:4.23333px;stroke-width:0.264583">CL_OCL_SLV</tspan></text>
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.256344;stroke-opacity:1"
+       id="rect855"
+       width="32.318817"
+       height="20.013083"
+       x="5.4740505"
+       y="33.601894" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:4.23333px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="9.3533945"
+       y="49.092857"
+       id="text859"><tspan
+         sodipodi:role="line"
+         id="tspan857"
+         x="9.3533945"
+         y="49.092857"
+         style="font-size:4.23333px;stroke-width:0.264583">CL_INT_SLV</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.349188;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
+       d="m 86.293493,43.494574 -47.783385,0.01712"
+       id="path861" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.88056px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="48.266968"
+       y="40.646255"
+       id="text1161"><tspan
+         sodipodi:role="line"
+         id="tspan1159"
+         x="48.266968"
+         y="40.646255"
+         style="font-size:3.88056px;stroke-width:0.264583">int_tst_cfg_bus</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.23333px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';stroke-width:0.264583"
+       x="11.589183"
+       y="10.071173"
+       id="text1183"><tspan
+         sodipodi:role="line"
+         id="tspan1181"
+         x="11.589183"
+         y="10.071173"
+         style="stroke-width:0.264583">interrupt</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.322561px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker1189)"
+       d="M 21.091539,33.360794 21.194108,12.463598"
+       id="path1185" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.310998px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker1225)"
+       d="m 105.61049,14.350416 0.0187,18.704354"
+       id="path1221" />
+    <text
+       xml:space="preserve"
+       style="font-size:4.23333px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';stroke-width:0.264583"
+       x="107.49008"
+       y="22.82111"
+       id="text1271"><tspan
+         sodipodi:role="line"
+         id="tspan1269"
+         x="107.49008"
+         y="22.82111"
+         style="stroke-width:0.264583">１．レジスタ書き込み</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.23333px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';stroke-width:0.264583"
+       x="39.08905"
+       y="63.229355"
+       id="text1275"><tspan
+         sodipodi:role="line"
+         id="tspan1273"
+         x="39.08905"
+         y="63.229355"
+         style="stroke-width:0.264583">２．割込みの発生を要求</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.23333px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';stroke-width:0.264583"
+       x="25.027987"
+       y="19.950716"
+       id="text1279"><tspan
+         sodipodi:role="line"
+         id="tspan1277"
+         x="25.027987"
+         y="19.950716"
+         style="stroke-width:0.264583">３．F1インスタンスに</tspan><tspan
+         sodipodi:role="line"
+         x="25.027987"
+         y="25.750874"
+         style="stroke-width:0.264583"
+         id="tspan1329">割込みを要求</tspan></text>
+  </g>
+</svg>

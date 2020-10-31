@@ -133,8 +133,11 @@ FPGAのレジスタに、fpga_pci_pokeで割込み番号を指定して書き込
 
 ### 割込み
 
-`cl_int_slv.sv`ファイルの`cl_int_slv`と、`cl_int_tst.sv`ファイルの`cl_int_tst`が、F1インスタンス側に割込みを要求するモジュール。
-`cl_ocl_slv.sv`ファイルの`cl_ocl_slv`モジュールが、F1インスタンスからの`0xd00`番地のレジスタ書き込みを受け付けて、cl_int_slvに割込みの発生を要求する。
+以下の流れで処理が行われる
 
+1. F1インスタンスのテストプログラムからの`0xd00`番地のレジスタ書き込みが、sh_ch_oclのポートから伝達
+2. `cl_ocl_slv.sv`ファイルの`cl_ocl_slv`モジュールが、レジスタ書き込みを受け付けて、`int_tst_cfg_bus`のポート経由で`cl_int_slv`に割込みの発生を要求
+3. `cl_int_slv.sv`ファイルの`cl_int_slv`と、`cl_int_tst.sv`ファイルの`cl_int_tst`が、F1インスタンス側に割込みを要求
 
+<img src="./images/cl-dram-dma_interrupt.svg">	
 

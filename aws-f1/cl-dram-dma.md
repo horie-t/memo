@@ -10,7 +10,7 @@
 
 #### XOCLドライバのアンインストール
 
-テストプログラムの実行には、XDMAドライバが必要。しかし、FPGA Developer AMIのversion 1.5.0以降では、XOCLのドライバがインストールされていて、XDMAドライバが動かない。よって、XOCLドライバを取り除いてから、XDMAドライバをインストールする。
+テストプログラムの実行には、XDMAドライバが必要。しかし、FPGA Developer AMIのversion 1.5.0以降では、XOCLのドライバがインストールされていて、XDMAドライバが動かない。(と言うより、XDMAはもはや[サポートされていない](https://github.com/aws/aws-fpga/blob/2fdf23ffad944cb94f98d09eed0f34c220c522fe/hdk/common/shell_v04261818/new_cl_template/design/cl_template_defines.vh#L24)…) ここでは、無理矢理動かすため、XOCLドライバを取り除いてから、XDMAドライバをインストールする。
 
 XOCLドライバがインストールされているかをチェックする。以下のようにxoclが表示されればインストールされています。
 

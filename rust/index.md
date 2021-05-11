@@ -12,3 +12,11 @@ Rust言語について、調べた事をまとめています。リンク集的�
   THEが付けられた入門書。いわゆる、バイブル本？
 * [Rust OSの比較](https://github.com/flosse/rust-os-comparison)  
   システム記述言語であるRustの真骨頂が発揮されているプロジェクトの比較
+* [The Embedded Rust Book](https://docs.rust-embedded.org/book/)  
+  組込み開発でRustを利用するためのガイド
+* [The Discovery book](https://docs.rust-embedded.org/discovery/)  
+  STM32F3Discoveryを使っての組込み開発の解説
+* [The Embedominicon](https://docs.rust-embedded.org/embedonomicon/)  
+  組込み関連の発展的な話題([和訳](https://tomoyuki-nakabayashi.github.io/embedonomicon/))
+* [Operating System development tutorials in Rust on the Raspberry Pi](https://github.com/rust-embedded/rust-raspberrypi-OS-tutorials)  
+  Raspberry Pi 3/4でOSを開発するチュートリアル

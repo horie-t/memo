@@ -2,7 +2,7 @@
 
 [原文](https://crates.io/crates/cargo-hf2)の翻訳です。(ver. 0.3.1)
 
-hf2 flashing over hid プロトコルを使用して接続された uf2 デバイスへの USB 経由のフラッシュを含むように cargo build コマンドを置き換えます。
+cargo build コマンドを置き換えて、ビルドと、接続されているUSB経由のuf2デバイスに、hid プロトコル上でhf2フォーマットでフラッシングします。 
 
 ## 前提条件
 

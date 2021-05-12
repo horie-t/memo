@@ -20,3 +20,7 @@ Rust言語について、調べた事をまとめています。リンク集的�
   組込み関連の発展的な話題([和訳](https://tomoyuki-nakabayashi.github.io/embedonomicon/))
 * [Operating System development tutorials in Rust on the Raspberry Pi](https://github.com/rust-embedded/rust-raspberrypi-OS-tutorials)  
   Raspberry Pi 3/4でOSを開発するチュートリアル
+
+## クレートの解説
+
+* [cargo-hf2](cargo-hf2.md)

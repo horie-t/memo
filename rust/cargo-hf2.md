@@ -2,11 +2,11 @@
 
 [原文](https://crates.io/crates/cargo-hf2)の翻訳です。(ver. 0.3.1)
 
-cargo build コマンドを置き換えて、ビルドと、接続されているUSB経由のuf2デバイスに、hid プロトコル上でhf2フォーマットでフラッシングします。 
+cargo build コマンドを置き換えて、ビルドと、接続されているUSB経由のuf2デバイスに、[hid プロトコル上でhf2フォーマットでフラッシング](https://github.com/jacobrosenthal/hf2-rs/tree/master/hf2)します。 
 
 ## 前提条件
 
-libusbを使用するhidapi-sysクレートを利用します。
+[libusb](https://github.com/libusb/hidapi)を使用する[hidapi-sys](https://crates.io/crates/hidapi)クレートを利用します。
 
 ## linux
 

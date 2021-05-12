@@ -4,7 +4,7 @@ Rust言語について、調べた事をまとめています。リンク集的�
 
 ## リンク集
 
-* [Rust公式(日本語)](https://www.rust-lang.org/)  
+* [Rust公式(日本語)](https://www.rust-lang.org/ja/)  
   正確な情報を確認したい時
 * [Rustの日本語ドキュメント](https://doc.rust-jp.rs/)  
   Rustの公式の日本語版のサイト

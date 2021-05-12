@@ -24,7 +24,9 @@ Bus 001 Device 087: ID 239a:001b Adafruit Industries Feather M0
 そして、ベンダーIDを下に入れ、/etc/udev/rules.d/99-adafruit-boards.rulesに以下のように保存してください。
 
 ```
-ATTRS{idVendor}=="239a", ENV{ID_MM_DEVICE_IGNORE}="1" SUBSYSTEM=="usb", ATTRS{idVendor}=="239a", MODE="0666" SUBSYSTEM=="tty", ATTRS{idVendor}=="239a", MODE="0666"
+ATTRS{idVendor}=="239a", ENV{ID_MM_DEVICE_IGNORE}="1"
+SUBSYSTEM=="usb", ATTRS{idVendor}=="239a", MODE="0666"
+SUBSYSTEM=="tty", ATTRS{idVendor}=="239a", MODE="0666"
 ```
 
 その後、再起動します。

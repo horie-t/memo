@@ -16,10 +16,13 @@ Rust言語について、調べた事をまとめています。リンク集的�
   組込み開発でRustを利用するためのガイド
 * [The Discovery book](https://docs.rust-embedded.org/discovery/)  
   STM32F3Discoveryを使っての組込み開発の解説
+* [Wio Terminalをはじめよう](https://wiki.seeedstudio.com/jp/Wio-Terminal-Getting-Started/)  
+  Wio Terminalの公式解説
 * [The Embedominicon](https://docs.rust-embedded.org/embedonomicon/)  
   組込み関連の発展的な話題([和訳](https://tomoyuki-nakabayashi.github.io/embedonomicon/))
 * [Operating System development tutorials in Rust on the Raspberry Pi](https://github.com/rust-embedded/rust-raspberrypi-OS-tutorials)  
   Raspberry Pi 3/4でOSを開発するチュートリアル
+
 
 ## クレートの解説
 

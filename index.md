@@ -15,3 +15,7 @@
 
 ## Rust言語
 * [Rust言語](./rust/index.html)
+
+## その他
+
+* [PCセットアップ](./pc-setup/index.html)

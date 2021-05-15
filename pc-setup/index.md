@@ -62,6 +62,14 @@ sudo apt install emacs
 (atomic-chrome-start-server)
 ```
 
+### ブラウザ起動
+
+`~/.emacs.d/init.el` に以下を追加
+
+```elisp
+(global-set-key "\C-cj" 'browse-url-at-point)
+```
+
 ### Mew
 
 [公式サイト](https://www.mew.org/ja/)

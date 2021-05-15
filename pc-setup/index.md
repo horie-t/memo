@@ -2,23 +2,29 @@
 
 PCのセットアップ時の個人的なメモ。
 
-## Ubuntu 20.04
+# Ubuntu 20.04
 
-### Chrome
+## Chrome
 
 「Chrome ダウンロード」で検索して、ダウンロードしたdebファイルをダブルクリックしてインストール。
 
-### Dropbox
+## Dropbox
 
 「Dropbox ubuntu インストール」で検索して、ダウンロードしたdebファイルをダブルクリックしてインストール。
 
-### Emacs
+## 開発ツールのインストール
+
+```bash
+sudo apt install build-essential
+```
+
+## Emacs
 
 ```bash
 sudo apt install emacs
 ```
 
-#### package: パッケージ管理ツール
+### package: パッケージ管理ツール
 
 [説明](https://emacs-jp.github.io/packages/package)
 
@@ -41,7 +47,7 @@ sudo apt install emacs
 
 再起動するか、Emacsで`M-x package-refresh-contents`を実行する。
 
-#### atomic-chrome パッケージのインストール
+### atomic-chrome パッケージのインストール
 
 [GitHub](https://github.com/alpha22jp/atomic-chrome)
 
@@ -56,7 +62,11 @@ sudo apt install emacs
 (atomic-chrome-start-server)
 ```
 
-#### Mew
+### Mew
+
+[公式サイト](https://www.mew.org/ja/)
+
+ソースコードの取得
 
 ```bash
 cd ~/ダウンロード
@@ -65,6 +75,54 @@ tar -zxf mew-6.8.tar.gz
 cd mew-6.8
 ```
 
+コンパイル・インストール
+
+```bash
+./configure 
+make
+sudo make install
+sudo make install-jinfo
+```
+
+`~/.emacs.d/init.el` に以下を追加
 
 
-## Windows 10
+```elisp
+(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mew")
+
+(autoload 'mew "mew" nil t)
+(autoload 'mew-send "mew" nil t)
+
+;; Optional setup (Read Mail menu):
+(setq read-mail-command 'mew)
+
+;; Optional setup (e.g. C-xm for sending a message):
+(autoload 'mew-user-agent-compose "mew" nil t)
+(if (boundp 'mail-user-agent)
+    (setq mail-user-agent 'mew-user-agent))
+(if (fboundp 'define-mail-user-agent)
+    (define-mail-user-agent
+      'mew-user-agent
+      'mew-user-agent-compose
+      'mew-draft-send-message
+      'mew-draft-kill
+      'mew-send-hook))
+``
+
+`~/.mew.el` を[初期設定](https://www.mew.org/ja/info/release/mew_1.html#configuration)を参考に送受信の設定を追加した後で、以下を追加。
+
+```elisp
+(setq mew-pop-delete 3) ; 3日前以上のものを削除
+(setq mew-pop-size 0)   ; サイズの大きいメールも取得
+
+(setq mew-use-cached-passwd 't) ; 起動中はパスワードを覚える
+
+; 
+(setq mew-summary-form '(type (5 date) " " (14 from) " " t (60 subj) "|" (0 body)))
+
+; HTMLのメールをChromeで開けるようにする
+(setq mew-prog-text/html-ext
+      '("chrome" ("-a" "%s") t))
+```
+
+# Windows 10

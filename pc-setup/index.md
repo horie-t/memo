@@ -107,7 +107,7 @@ sudo make install-jinfo
       'mew-draft-send-message
       'mew-draft-kill
       'mew-send-hook))
-``
+```
 
 `~/.mew.el` を[初期設定](https://www.mew.org/ja/info/release/mew_1.html#configuration)を参考に送受信の設定を追加した後で、以下を追加。
 

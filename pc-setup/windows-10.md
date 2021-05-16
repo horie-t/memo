@@ -79,3 +79,63 @@ WSL上で以下を実行する。
 echo "export DISPLAY=\$(cat /etc/resolv.conf | grep nameserver | awk '{print \$2}'):0.0" >> ~/.bashrc
 echo 'export LIBGL_ALWAYS_INDIRECT=1' >> ~/.bashrc
 ```
+
+### 日本語入力の設定
+
+* [fcitxで作るWSL日本語開発環境](https://qiita.com/dozo/items/97ac6c80f4cd13b84558)
+* [WSL の Ubuntu18.04 で日本語入力](https://vogel.at.webry.info/201905/article_6.html)
+
+Windowsフォントのインストール
+
+```bash
+sudo apt -y install fontconfig
+sudo ln -s /mnt/c/Windows/Fonts /usr/share/fonts/windows
+sudo fc-cache -fv
+```
+
+fcitxのインストール
+
+```bash
+sudo apt -y install fcitx-mozc dbus-x11 x11-xserver-utils
+sudo sh -c "sudo dbus-uuidgen > /var/lib/dbus/machine-id"
+```
+
+日本語環境のセットアップ
+
+```bash
+sudo apt install language-pack-ja
+sudo update-locale LANG=ja_JP.UTF8
+sudo apt install fonts-takao
+```
+
+fcitxの設定
+
+```bash
+set -o noclobber
+cat << EOS >> .profile
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS="@im=fcitx"
+export DefaultIMModule=fcitx
+if [ $SHLVL = 1 ] ; then
+  xset -r 49  > /dev/null 2&>1
+  (fcitx-autostart > /dev/null 2&>1 &)
+fi
+EOS
+```
+
+ターミナルを再度開き直す。日本語入力のオンオフのキーを設定する。
+
+```bash
+fcitx-config-gtk3
+```
+
+GUI上に Mozc があるか確認し、なければ「＋」ボタンを押す。「全体の設定」タブで、"Triger Input Method"で`全角/半角`キーを押して、Zenkakuhankakuを指定します。
+
+
+日本語入力ができなくなった時は以下を試してみるとよい。
+
+```bash
+sudo sh -c "sudo dbus-uuidgen > /var/lib/dbus/machine-id"
+fcitx-autostart > /dev/null 2&>1 &
+```

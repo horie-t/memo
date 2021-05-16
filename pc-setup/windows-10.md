@@ -27,9 +27,31 @@ wsl --set-default-version 2
 
 Microsoft StoreでUbuntuをインストールする。
 
-
 ## Docker
 
 「Docker Desktop for Windows」で検索して、ダウンロードしたexeファイルをダブルクリックしてインストール。
 
 Dockerのsetting画面で、Resources - WSL INTEGRATION で Ubuntu との統合をenableにする。
+
+## Windows Terminal
+
+Microsoft Storeでインストールする。
+
+デフォルトをWSL2に設定する。起動後に設定画面を開き、「JSONファイルを開く」をクリックして、jsonファイルを変更する
+
+```json
+{
+    //(中略)
+    //後述のUbuntuのguidを設定する
+    "defaultProfile": "{2c4de342-38b7-51cf-b940-2309a097f518}",
+    //(中略)
+            {
+                "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
+                "hidden": false,
+                "name": "Ubuntu",
+                "source": "Windows.Terminal.Wsl",
+                "commandline" : "wsl.exe ~ -d Ubuntu"  // 起動時にディレクトリをUbutuのHOMEにする
+            },
+    //(中略)
+}
+```

@@ -18,4 +18,5 @@
 
 ## その他
 
-* [PCセットアップ](./pc-setup/index.html)
+* [Ubuntu 20.04 セットアップ](./pc-setup/ubuntu-20.04.html)
+* [Windows 10 セットアップ](./pc-setup/windows-10.html)

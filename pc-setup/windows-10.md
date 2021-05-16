@@ -55,3 +55,25 @@ Microsoft Storeでインストールする。
     //(中略)
 }
 ```
+
+## VcXsrv
+
+[VcXsrv](https://sourceforge.net/projects/vcxsrv/)からダウンロードしてインストールする
+
+### 自動起動設定
+
+1. 「スタート」メニューから「VcXsrv」 - 「XLaunch」を選択して起動する。
+2. 「Display settings」ダイアログで、「Multiple windows」を選択し、「Display number」は-1にして、「次へ」をクリックする。
+3. 「Client startup」ダイアログで、「Clipboard」、「Primary Selection」、「Native opengl」にチェックして、「Additional parameters for VcXsrv」に`-ac`を入力して、「次へ」をクリックする。
+4. 「Finish Configration」ダイアログで、「Save Configration」をクリックして、config.xlaunchファイルを保存して、「完了」をクリックする。
+5. `「Windows」キー + r`を押して、`shell:startup`と入力して、「OK」をクリックする。
+6. スタートアップフォルダが開くので、ここに保存したconfig.xlaunchファイルを移動する。
+
+### WSLの環境設定
+
+WSL上で以下を実行する。
+
+```bash
+echo "export DISPLAY=\$(cat /etc/resolv.conf | grep nameserver | awk '{print \$2}'):0.0" >> ~/.bashrc
+echo 'export LIBGL_ALWAYS_INDIRECT=1' >> ~/.bashrc
+```

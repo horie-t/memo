@@ -1,8 +1,6 @@
-# PCセットアップ
+# Ubuntu 20.04 セットアップ
 
 PCのセットアップ時の個人的なメモ。
-
-# Ubuntu 20.04
 
 ## Chrome
 
@@ -132,5 +130,3 @@ sudo make install-jinfo
 (setq mew-prog-text/html-ext
       '("chrome" ("-a" "%s") t))
 ```
-
-# Windows 10

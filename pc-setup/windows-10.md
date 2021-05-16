@@ -27,6 +27,8 @@ wsl --set-default-version 2
 
 Microsoft StoreでUbuntuをインストールする。
 
+その後の設定は、[Ubuntu 20.04 セットアップ](./ubuntu-20.04.html)を参考にする。
+
 ## Docker
 
 「Docker Desktop for Windows」で検索して、ダウンロードしたexeファイルをダブルクリックしてインストール。

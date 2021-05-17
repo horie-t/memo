@@ -139,3 +139,13 @@ GUI上に Mozc があるか確認し、なければ「＋」ボタンを押す�
 sudo sh -c "sudo dbus-uuidgen > /var/lib/dbus/machine-id"
 fcitx-autostart > /dev/null 2&>1 &
 ```
+
+## JDK
+
+
+
+## sbt
+
+## IntelliJ
+
+## Vivado

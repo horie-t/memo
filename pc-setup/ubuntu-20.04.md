@@ -14,6 +14,7 @@ PCのセットアップ時の個人的なメモ。
 
 ```bash
 sudo apt install build-essential
+sudo apt install git
 ```
 
 ## Emacs

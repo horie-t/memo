@@ -16,7 +16,9 @@
 ## Rust言語
 * [Rust言語](./rust/index.html)
 
+
 ## その他
 
+* [Wio Terminal](./wio-terminal/index.html)
 * [Ubuntu 20.04 セットアップ](./pc-setup/ubuntu-20.04.html)
 * [Windows 10 セットアップ](./pc-setup/windows-10.html)

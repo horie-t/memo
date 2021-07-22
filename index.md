@@ -1,5 +1,9 @@
 # メモ
 
+## 3Dプリンタ
+
+* [サーボ・ホーンをプリント](./3d-printer/servo-horn.html)
+
 ## AWS EC2 F1インスタンス
 
 * [AWS EC2 F1インスタンス入門](./aws-f1/beginning-guide.html)

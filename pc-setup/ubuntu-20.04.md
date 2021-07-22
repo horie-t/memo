@@ -10,12 +10,82 @@ PCのセットアップ時の個人的なメモ。
 
 「Dropbox ubuntu インストール」で検索して、ダウンロードしたdebファイルをダブルクリックしてインストール。
 
-## 開発ツールのインストール
+### Docker
+
+[docker docs](https://docs.docker.com/engine/install/ubuntu/)を参照
+
+```bash
+sudo apt-get install apt-transport-https ca-certificates curl gnupg lsb-release
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+echo \
+  "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+```
+
+## 開発関連のインストール
+
+### 基本パッケージ
 
 ```bash
 sudo apt install build-essential
+sudo apt install curl
 sudo apt install git
 ```
+
+### Node.js
+
+[n](https://github.com/tj/n)を使ってバージョン管理します。
+
+```bash
+# 一旦、node.js npmをインストール
+sudo apt install nodejs npm
+# nをインストール
+sudo npm install -g n
+# nを使って最新のNode.jsをインストール
+sudo n latest
+# aptでインストールしたNode.js、npmはアンインストールする
+sudo apt purge nodejs npm
+sudo apt autoremove
+```
+
+シェルを再起動すること。
+
+### AWS CLI
+
+[AWSのユーザガイド](https://docs.aws.amazon.com/ja_jp/cli/latest/userguide/install-cliv2-linux.html)を参照
+
+インストール
+
+```bash
+cd /tmp
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+```
+
+セットアップ
+
+```bash
+aws configure
+```
+
+### AWS SAM
+
+[AWSのユーザガイド](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install-linux.html)を参照
+
+```bash
+curl https://github.com/aws/aws-sam-cli/releases/latest/download/aws-sam-cli-linux-x86_64.zip -o aws-sam-cli-linux-x86_64.zip
+cd ~/ダウンロード`
+unzip aws-sam-cli-linux-x86_64.zip -d sam-installation
+sudo ./sam-installation/install
+```
+
+
+## VSCode
+
+[ダウンロードページ](https://code.visualstudio.com/docs/?dv=linux64_deb)からdebファイルをダウンロードしてインストール
 
 ## Emacs
 
@@ -45,6 +115,18 @@ sudo apt install emacs
 ```
 
 再起動するか、Emacsで`M-x package-refresh-contents`を実行する。
+
+### 画面のテーマ変更
+
+1. `M-x package-install [RET] solarized-theme`
+2. `M-x load-theme [RET] solarized-dark`
+
+
+### パッケージのインストール
+
+インストールするパッケージのリスト
+
+* markdown-mode
 
 ### atomic-chrome パッケージのインストール
 
@@ -131,3 +213,4 @@ sudo make install-jinfo
 (setq mew-prog-text/html-ext
       '("chrome" ("-a" "%s") t))
 ```
+
